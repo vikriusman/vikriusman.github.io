@@ -3,9 +3,3 @@ theme: jekyll-theme-minimal
 
 github:
   is_project_page: false
-
-sass:
-  style: compressed
-
-include:
-- assets/css
