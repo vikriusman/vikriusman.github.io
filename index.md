@@ -1,4 +1,3 @@
-# VIKRI USMAN RIZKY
 
 - **Email**: vikriusman2@gmail.com
 - **LinkedIn**: [www.linkedin.com/in/vikri-usman-rizky](https://www.linkedin.com/in/vikri-usman-rizky)
