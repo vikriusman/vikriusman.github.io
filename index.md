@@ -1,10 +1,6 @@
----
-layout: default
----
-
 <link rel="stylesheet" href="/assets/css/style.css">
 
-# 👋 Halo, I am Vikri Usman Rizky
+# 👋 Hello, I am Vikri Usman Rizky
 
 - **Email**: vikriusman2@gmail.com
 - **LinkedIn**: [www.linkedin.com/in/vikri-usman-rizky](https://www.linkedin.com/in/vikri-usman-rizky)
