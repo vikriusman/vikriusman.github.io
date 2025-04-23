@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css">
 
 # 👋 Halo, I am Vikri Usman Rizky
 
