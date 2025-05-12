@@ -12,7 +12,8 @@
           :href="containsHttps(data.link) ? data.link : 'mailto:' + data.link"
           target="_blank"
         >
-          <img :src="data.icon" width="20" />
+          <img :src="data.icon" width="20" class="hidden dark:block" />
+          <img :src="data.dark_icon" width="20" class="block dark:hidden" />
         </a>
       </div>
     </div>
@@ -49,7 +50,7 @@
               width="300"
             />
             <div
-              class="w-80 p-2 border-2 border-zinc-400 flex gap-3 items-center"
+              class="w-80 p-2 border-2 border-zinc-400 flex gap-3 items-center mt-2"
             >
               <div class="w-5 h-5 bg-violet-400"></div>
               currently working on<span class="font-bold">JKT48</span>
@@ -114,7 +115,7 @@
             <div class="mb-3 text-xl text-violet-400 font-medium p-3">
               {{ data.title }}
             </div>
-            <div class="p-3 gap-3">
+            <div class="p-3 flex gap-3">
               <span v-for="(item, i) in data.item" :key="i + 'item'">{{
                 item
               }}</span>
@@ -124,10 +125,8 @@
         <div
           class="col-span-2 md:col-span-1 justify-items-center content-center hidden md:block"
         >
-          <div
-            class="border-2 border-double border-zinc-400 w-90 h-40 flex justify-center"
-          >
-            <div class="bg-zinc-900 -mt-40 p-6">
+          <div class="border-2 border-zinc-400 w-90 h-40 flex justify-center">
+            <div class="dark:bg-zinc-900 bg-white -mt-40 p-6">
               <img :src="skill" />
             </div>
           </div>
@@ -141,22 +140,28 @@
 import zeeOniel from "~/assets/images/oniel-zee.png";
 import banner from "~/assets/images/banner.png";
 import github from "~/assets/images/github.png";
+import github_dark from "~/assets/images/github-dark.png";
 import linkedin from "~/assets/images/linkedin.png";
+import linkedin_dark from "~/assets/images/linkedin-dark.png";
 import shape from "~/assets/images/shape.png";
 import gmail from "~/assets/images/gmail.png";
+import gmail_dark from "~/assets/images/gmail-dark.png";
 import skill from "~/assets/images/skills.png";
 
 const socials = [
   {
     icon: github,
+    dark_icon: github_dark,
     link: "https://www.instagram.com/zeeasadel/",
   },
   {
     icon: linkedin,
+    dark_icon: linkedin_dark,
     link: "https://www.instagram.com/jkt48.oniel/",
   },
   {
     icon: gmail,
+    dark_icon: gmail_dark,
     link: "vikriusman02@gmail.com",
   },
 ];
