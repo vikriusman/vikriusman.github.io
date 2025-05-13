@@ -99,7 +99,7 @@
           </div>
         </div>
         <div
-          class="col-span-3 md:col-span-1 justify-items-center content-center hidden md:block"
+          class="col-span-3 md:col-span-1 justify-items-end content-center hidden md:block"
         >
           <div class="border-2 border-zinc-400 w-90 h-40 flex justify-center">
             <div class="dark:bg-zinc-900 bg-white -mt-40 p-6">
