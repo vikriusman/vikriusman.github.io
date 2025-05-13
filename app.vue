@@ -20,14 +20,13 @@
     <div class="grid grid-cols-2 gap-4 justify-items-center items-center">
       <div class="col-span-2 md:col-span-1 md:mb-0 mb-7">
         <div class="text-4xl md:text-5xl font-bold">
-          Oniel and Azizi are
-          <span class="text-violet-400">Kintan's Oshi</span> and
-          <span class="text-violet-400">JKT48's Member</span>
+          Vikri Usman Rizky is a
+          <span class="text-violet-400">DevOps Engineer</span> Specializing in
+          <span class="text-violet-400">Cloud Infrastructure, CI/CD Automation, and System Reliability.</span>
         </div>
 
         <div class="my-9">
-          They singing and dancing on stage, also an actres who meet their fans
-          on JKT48 Theater
+          DevOps Engineer with over 5 years of experience delivering full-cycle software development for 17+ projects in the telecommunications, finance, and public sectors. Proficient in CI/CD, microservices architecture, cloud-native development, and cross-functional collaboration. Specialized in automating deployments, optimizing databases, and ensuring high availability in production environments.
         </div>
       </div>
       <div class="col-span-2 md:col-span-1 w-full">
@@ -59,40 +58,6 @@
         </div>
       </div>
     </div>
-
-    <section class="mt-20">
-      <div class="flex items-center md:w-100 w-full">
-        <UIcon
-          name="i-mingcute-dot-grid-line"
-          class="text-2xl text-violet-400"
-        />
-
-        <span class="text-2xl font-bold ml-1 mr-3">Projects</span>
-        <hr class="flex-1 border-violet-400" />
-      </div>
-
-      <div
-        class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-5 mt-5 justify-between"
-      >
-        <div
-          class="border-2 border-zinc-400 divide-y-1 divide-gray-200"
-          v-for="(project, key) in projects"
-          :key="key + 'pr'"
-        >
-          <img :src="project.icon" class="aspect-3/2 object-cover" />
-
-          <div class="text-l text-gray-600 dark:text-gray-400 font-medium p-3">
-            {{ project.sub_title }}
-          </div>
-          <div class="p-3">
-            <div class="mb-3 text-xl text-violet-400 font-medium">
-              {{ project.title }}
-            </div>
-            <div>{{ project.description }}</div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="mt-20">
       <div class="flex items-center md:w-120 w-full">
@@ -133,6 +98,42 @@
         </div>
       </div>
     </section>
+
+    <section class="mt-20">
+      <div class="flex items-center md:w-100 w-full">
+        <UIcon
+          name="i-mingcute-dot-grid-line"
+          class="text-2xl text-violet-400"
+        />
+
+        <span class="text-2xl font-bold ml-1 mr-3">Projects</span>
+        <hr class="flex-1 border-violet-400" />
+      </div>
+
+      <div
+        class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-5 mt-5 justify-between"
+      >
+        <div
+          class="border-2 border-zinc-400 divide-y-1 divide-gray-200"
+          v-for="(project, key) in projects"
+          :key="key + 'pr'"
+        >
+          <img :src="project.icon" class="aspect-3/2 object-cover" />
+
+          <div class="text-l text-gray-600 dark:text-gray-400 font-medium p-3">
+            {{ project.sub_title }}
+          </div>
+          <div class="p-3">
+            <div class="mb-3 text-xl text-violet-400 font-medium">
+              {{ project.title }}
+            </div>
+            <div>{{ project.description }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
   </div>
 </template>
 
