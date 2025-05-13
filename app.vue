@@ -50,12 +50,12 @@
           <img
             :src="shape"
             width="150"
-            class="z-1 absolute bottom-1/11 md:right-1/5 right-0 rotate-90"
+            class="z-3 absolute bottom-1/11 md:right-1/5 right-0 rotate-90"
           />
 
           <div class="flex items-center flex-col">
             <img
-              :src="zeeOniel"
+              :src="mylofly"
               class="aspect-2/3 object-cover relative z-2"
               width="300"
             />
@@ -70,7 +70,7 @@
       </div>
     </div>
 
-    <section class="mt-20">
+    <section class="mt-25">
       <div class="flex items-center md:w-120 w-full">
         <UIcon
           name="i-mingcute-dot-grid-line"
@@ -110,7 +110,7 @@
       </div>
     </section>
 
-    <section class="mt-20">
+    <section class="mt-25">
       <div class="flex items-center md:w-100 w-full">
         <UIcon
           name="i-mingcute-dot-grid-line"
@@ -147,7 +147,7 @@
 </template>
 
 <script setup lang="ts">
-import zeeOniel from "~/assets/images/oniel-zee.png";
+import mylofly from "~/assets/images/mylofly.png";
 import banner from "~/assets/images/banner.png";
 import github from "~/assets/images/github.png";
 import github_dark from "~/assets/images/github-dark.png";
