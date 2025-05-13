@@ -19,14 +19,25 @@
     </div>
     <div class="grid grid-cols-2 gap-4 justify-items-center items-center">
       <div class="col-span-2 md:col-span-1 md:mb-0 mb-7">
-        <div class="text-4xl md:text-5xl font-bold">
+        <div class="text-4xl md:text-5xl font-bold mb-3">
           Vikri Usman Rizky is a
-          <span class="text-violet-400">DevOps Engineer</span> Specializing in
-          <span class="text-violet-400">Cloud Infrastructure, CI/CD Automation, and System Reliability.</span>
+          <span class="text-violet-400">DevOps Engineer</span>
+        </div>
+        <div class="text-2xl md:text-3xl font-bold">
+          Specializing in
+          <span class="text-violet-400"
+            >Cloud Infrastructure, CI/CD Automation, and System
+            Reliability.</span
+          >
         </div>
 
         <div class="my-9">
-          DevOps Engineer with over 5 years of experience delivering full-cycle software development for 17+ projects in the telecommunications, finance, and public sectors. Proficient in CI/CD, microservices architecture, cloud-native development, and cross-functional collaboration. Specialized in automating deployments, optimizing databases, and ensuring high availability in production environments.
+          DevOps Engineer with over 5 years of experience delivering full-cycle
+          software development for 17+ projects in the telecommunications,
+          finance, and public sectors. Proficient in CI/CD, microservices
+          architecture, cloud-native development, and cross-functional
+          collaboration. Specialized in automating deployments, optimizing
+          databases, and ensuring high availability in production environments.
         </div>
       </div>
       <div class="col-span-2 md:col-span-1 w-full">
@@ -70,8 +81,8 @@
         <hr class="flex-1 border-violet-400" />
       </div>
 
-      <div class="mt-5 grid grid-cols-2 gap-5 mt-5">
-        <div class="grid grid-cols-3 gap-5 col-span-2 md:col-span-1">
+      <div class="mt-5 grid grid-cols-3 gap-5 mt-5">
+        <div class="grid grid-cols-4 gap-5 col-span-3 md:col-span-2">
           <div
             class="border-2 col-span-3 md:col-span-1 border-zinc-400 divide-y-1 divide-gray-200"
             v-for="(data, key) in skills"
@@ -88,7 +99,7 @@
           </div>
         </div>
         <div
-          class="col-span-2 md:col-span-1 justify-items-center content-center hidden md:block"
+          class="col-span-3 md:col-span-1 justify-items-center content-center hidden md:block"
         >
           <div class="border-2 border-zinc-400 w-90 h-40 flex justify-center">
             <div class="dark:bg-zinc-900 bg-white -mt-40 p-6">
@@ -132,8 +143,6 @@
         </div>
       </div>
     </section>
-
-
   </div>
 </template>
 
