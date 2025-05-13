@@ -84,7 +84,7 @@
       <div class="mt-5 grid grid-cols-3 gap-5 mt-5">
         <div class="grid grid-cols-4 gap-5 col-span-3 md:col-span-2">
           <div
-            class="border-2 col-span-3 md:col-span-1 border-zinc-400 divide-y-1 divide-gray-200"
+            class="border-2 col-span-4 md:col-span-1 border-zinc-400 divide-y-1 divide-gray-200"
             v-for="(data, key) in skills"
             :key="key + 'skill'"
           >
