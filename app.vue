@@ -151,6 +151,34 @@
           </div>
         </div>
       </section>
+
+      <section class="mt-25">
+        <div class="flex items-center md:w-140 w-full">
+          <UIcon
+            name="i-mingcute-dot-grid-line"
+            class="text-2xl text-violet-400"
+          />
+
+          <span class="text-2xl font-bold ml-1 mr-3">Certification</span>
+          <hr class="flex-1 border-violet-400" />
+        </div>
+
+        <div
+          class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-5 mt-5 justify-between"
+        >
+          <div
+            class="border-2 border-zinc-400 divide-y-1 divide-gray-200"
+            v-for="(project, key) in projects"
+            :key="key + 'pr'"
+          >
+            <img :src="project.icon" class="aspect-3/2 object-cover" />
+
+            <div class="text-l text-violet-400 font-medium font-medium p-3">
+              {{ project.title }}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <div
