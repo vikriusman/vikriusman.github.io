@@ -25,7 +25,8 @@ export default defineNuxtConfig({
       MyFont: {
         sources: [
           
-          { src: '/fonts/NaturalMono-Regular.ttf', type: 'font/ttf' }
+          { src: '/fonts/NaturalMono-Regular.ttf', type: 'font/ttf' },
+          { src: '/fonts/CONSOLA.TTF', type: 'font/ttf' }
         ],
         weight: '400',
         style: 'normal'
