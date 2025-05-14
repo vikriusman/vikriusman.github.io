@@ -10,12 +10,26 @@ export default defineNuxtConfig({
     '@nuxt/ui'
   ],
   css: [ '~/assets/css/styles.css'],
-   ui: {
+  ui: {
     theme: {
       colors: [
         'indigo',
         'zinc',
       ]
+    }
+  },
+
+  font: {
+    provider: 'local',
+    families: {
+      MyFont: {
+        sources: [
+          
+          { src: '/fonts/NaturalMono-Regular.ttf', type: 'font/ttf' }
+        ],
+        weight: '400',
+        style: 'normal'
+      }
     }
   }
 })

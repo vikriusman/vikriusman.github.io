@@ -2,7 +2,6 @@
 @import "@nuxt/ui";
 
 
-/* .dark {
-  --ui-bg: var(--ui-color-zinc-900);
-  --ui-border: var(--ui-color-zinc-800);
-} */
+html, body {
+  font-family: 'NaturalMono', sans-serif;
+}
