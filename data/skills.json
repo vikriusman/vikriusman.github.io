@@ -1,15 +1,15 @@
 [
   {
     "title": "DevOps Tools",
-    "item": ["GitLab", "Jenkins", "Harbor", "Shell Script", "Kubernetes", "Cloud Build", "Github Action"]
+    "item": ["GitLab,", "Jenkins,", "Harbor,", "Kubernetes,", "Cloud Build,", "Github Action"]
   },
   {
     "title": "Programming",
-    "item": ["Python", "Shell Script"]
+    "item": ["Python,", "Shell Script"]
   },
   {
     "title": "Databases",
-    "item": ["PostgreSQL", "MySQL", "Redis", "MongoDB", "HanaDB"]
+    "item": ["PostgreSQL,", "MySQL,", "Redis,", "MongoDB,", "HanaDB"]
   },
   {
     "title": "Version Control",

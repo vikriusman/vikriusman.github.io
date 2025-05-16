@@ -3,6 +3,13 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
 
+  nitro: {
+    preset: 'static',
+    output: {
+      dir: '.output',
+      publicDir: '.output'
+    }
+  },
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
