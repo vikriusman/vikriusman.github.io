@@ -128,25 +128,53 @@
         </div>
 
         <div
-          class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-5 mt-5 justify-between"
+          class="mt-5 grid grid-cols-1 md:grid-cols-4 gap-5 mt-5 justify-between"
         >
           <div
             class="border-2 border-zinc-400 divide-y-1 divide-gray-200"
             v-for="(project, key) in projects"
             :key="key + 'pr'"
           >
-            <img :src="project.icon" class="aspect-3/2 object-cover" />
+            <div class="relative aspect-3/2 overflow-hidden">
+              <UCarousel
+                v-slot="{ item }"
+                :dots="project.icon.length > 1 ? true : false"
+                :ui="{
+                  controls: 'absolute bottom-1 inset-x-12',
+                  dots: 'bottom-2 ',
+                  dot: 'w-6 h-1  shadow-2xl',
+                }"
+                :items="project.icon"
+                class="justify-center w-full h-full"
+              >
+                <div class="w-full h-full aspect-3/2 flex justify-center">
+                  <img
+                    :src="item"
+                    @click="previewImage(item)"
+                    class="object-cover"
+                  />
+                </div>
+              </UCarousel>
+            </div>
 
             <div
               class="text-l text-gray-600 dark:text-gray-400 font-medium p-3"
             >
               {{ project.sub_title }}
             </div>
-            <div class="p-3">
+            <div class="p-3 justify-between">
               <div class="mb-3 text-xl text-violet-400 font-medium">
                 {{ project.title }}
               </div>
-              <div>{{ project.description }}</div>
+              <div>
+                {{ project.description.slice(0, 200) }}...
+                <div
+                  class="font-bold text-violet-400 cursor-pointer mt-2"
+                  @click="openDescription(project)"
+                >
+                  Read more
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -171,10 +199,32 @@
             v-for="(project, key) in certs"
             :key="key + 'pr'"
           >
-            <img :src="project.icon" class="aspect-3/2 object-cover" />
+            <div class="relative aspect-3/2 overflow-hidden">
+              <UCarousel
+                v-slot="{ item }"
+                :dots="project.icon.length > 1 ? true : false"
+                :ui="{
+                  controls: 'absolute bottom-1 inset-x-12',
+                  dots: 'bottom-2 ',
+                  dot: 'w-6 h-1  shadow-2xl',
+                }"
+                :items="project.icon"
+                class="flex justify-center w-full h-full"
+              >
+                <div class="w-full h-full aspect-3/2 object-cover">
+                  <img
+                    :src="item"
+                    @click="previewImage(item)"
+                    class="object-cover"
+                  />
+                </div>
+              </UCarousel>
+            </div>
 
             <div class="text-l text-violet-400 font-medium font-medium p-3">
-              <a :href="project.verification" target="_blank">{{ project.sub_title }} : {{ project.title }}</a>
+              <a :href="project.verification" target="_blank"
+                >{{ project.sub_title }} : {{ project.title }}</a
+              >
             </div>
           </div>
         </div>
@@ -182,14 +232,18 @@
     </div>
 
     <div
-      class="border-t-2 border-zinc-300 bg-zinc-200 dark:bg-zinc-800 md:px-25 md:py-5 py-5 px-10 justify-between h-full"
+      class="border-t-2 border-zinc-300 bg-zinc-200 dark:bg-zinc-800 md:px-25 md:py-5 py-5 px-10 md:justify-between justify-center h-full"
     >
-      <div class="grid grid-cols-2 gap-4 items-center">
-        <div class="col-span-2 md:col-span-1">
-          <div>Currently accepting freelance projects and open to job opportunities</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+        <div
+          class="justify-items-center text-center md:justify-items-start md:text-start"
+        >
+          <div>
+            Currently accepting freelance projects and open to job opportunities
+          </div>
           <div>as DevOps Engineer</div>
         </div>
-        <div class="col-span-2 md:col-span-1 justify-items-end">
+        <div class="md:justify-items-end justify-items-center">
           <div class="font-bold mb-2">Contact Me :</div>
           <div class="flex gap-3 flex-wrap">
             <a
@@ -207,14 +261,40 @@
         </div>
       </div>
 
-      <div class="text-center mt-10 dark:text-gray-400 text-gray-600">
-        &copy; Copyright {{ year }}. Made by <a class="text-violet-400" href="https://kintanr.github.io" target="_blank">Kintan Umari </a>
+      <div
+        class="justify-center mt-10 dark:text-gray-400 text-gray-600 flex gap-1 flex-wrap"
+      >
+        <span>&copy; Copyright {{ year }}.</span>
+        <span
+          >Made by
+          <a
+            class="text-violet-400"
+            href="https://kintanr.github.io"
+            target="_blank"
+            >Kintan Umari
+          </a></span
+        >
       </div>
+
+      <UModal v-model:open="open" class="!max-w-[900px] overflow-y-auto">
+        <template #content>
+          <img :src="imagePrev" class="rounded-lg" />
+        </template>
+      </UModal>
+
+      <UModal v-model:open="open_description" :title="project_title">
+        <template #body>
+          <div>
+            {{ all_description }}
+          </div>
+        </template>
+      </UModal>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import mylofly from "~/assets/images/mylofly.png";
 import banner from "~/assets/images/banner.png";
 import github from "~/assets/images/github.png";
@@ -231,6 +311,24 @@ import projects from "~/data/projects.json";
 import certs from "~/data/certification.json";
 
 const year = new Date().getFullYear();
+
+const open = ref(false);
+const imagePrev = ref(null);
+
+function previewImage(image: any) {
+  open.value = true;
+  imagePrev.value = image;
+}
+
+const open_description = ref(false);
+const project_title = ref(null);
+const all_description = ref(null);
+
+function openDescription(data: any) {
+  open_description.value = true;
+  project_title.value = data.title;
+  all_description.value = data.description;
+}
 
 const socials = [
   {
