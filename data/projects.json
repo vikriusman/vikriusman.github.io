@@ -1,6 +1,6 @@
 [
   {
-    "icon": ["/images/lcm_telin.png","/images/lcm_telin.png"],
+    "icon": ["/images/lcm_telin.png"],
     "title": "LCM – Telin Singapore",
     "sub_title": "Full Cycle",
     "description": "Set up development, staging, and production environments. Built and optimized business logic using SQL and ORM technologies. Supported deployment and maintenance activities to ensure system reliability. Successfully standardized environment setup, reducing operational errors by 20%."
@@ -24,7 +24,7 @@
     "description": "Developed backend systems for asset and vendor modules. Integrated with the S400 core banking system for financial operations. Implemented continuous monitoring and maintenance strategies. Ensured smooth integration with core banking systems with zero critical errors during audits."
   },
   {
-    "icon": ["/images/birawa.png"],
+    "icon": ["/images/myBirawaTMS.jpg","/images/myDefa.jpg", "/images/security.jpg"],
     "title": "MyBirawa Series – Graha Sarana Duta",
     "sub_title": "Full Cycle",
     "description": "Delivered applications with complete CI/CD pipelines, tracking, and KPI features. Supported backend development and optimized reporting functionalities. Coordinated deployment and post-launch optimization. Reduced incident reports by 25% through robust monitoring and deployment practices."
@@ -45,7 +45,7 @@
     "icon": ["/images/proj-NED.jpg"],
     "title": "NED (New Edapem) – PT Taspen",
     "sub_title": "Full Cycle",
-    "description": "Built and maintained core infrastructure using microservices principles. Migrated data from HANA DB on-premises to HANA DB on GCP. Optimized secure integrations with financial services. Supported environment management using Proxmox and CI/CD pipelines. Improved transaction reliability and reduced downtime in payment processing systems."
+    "description": "Built and maintained core infrastructure using microservices principles. Migrated data from HANA DB on-premises to HANA DB on GCP. Optimized secure integrations with financial services. Supported environment management using CI/CD pipelines. Improved transaction reliability."
   },
   {
     "icon": ["/images/sidex.jpg"],

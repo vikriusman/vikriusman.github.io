@@ -20,9 +20,8 @@
       </div>
       <div class="grid grid-cols-2 gap-4 justify-items-center items-center">
         <div class="col-span-2 md:col-span-1 md:mb-0 mb-7">
-          <div class="text-4xl md:text-5xl font-bold mb-3">
-            Vikri Usman Rizky is a
-            <span class="text-violet-400">DevOps Engineer</span>
+          <div class="text-4xl md:text-4xl font-bold mb-3">
+            Vikri Usman Rizky | <span class="text-violet-400">DevOps Engineer</span>
           </div>
           <div class="text-2xl md:text-3xl font-bold">
             Specializing in
@@ -65,7 +64,7 @@
                 class="w-80 p-2 border-2 border-zinc-400 flex gap-3 items-center mt-2"
               >
                 <div class="w-5 h-5 bg-violet-400"></div>
-                Working at <span class="font-bold">TelkomSigma</span>
+                Working on <span class="font-bold">Large-scale system</span>
               </div>
             </div>
           </div>
@@ -295,7 +294,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import mylofly from "~/assets/images/mylofly.png";
+// import mylofly from "~/assets/images/mylofly.png";
+import mylofly from "/images/me.png";
 import banner from "~/assets/images/banner.png";
 import github from "~/assets/images/github.png";
 import github_dark from "~/assets/images/github-dark.png";
