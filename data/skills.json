@@ -1,22 +1,18 @@
 [
   {
-    "title": "skill title",
-    "item": ["html", "js", "abacadabra"]
+    "title": "DevOps Tools",
+    "item": ["GitLab", "Jenkins", "Harbor", "Shell Script", "Kubernetes", "Cloud Build", "Github Action"]
   },
   {
-    "title": "skill title",
-    "item": ["html", "js", "abacadabra"]
+    "title": "Programming",
+    "item": ["Python", "Shell Script"]
   },
   {
-    "title": "skill title",
-    "item": ["html", "js", "abacadabra"]
+    "title": "Databases",
+    "item": ["PostgreSQL", "MySQL", "Redis", "MongoDB", "HanaDB"]
   },
   {
-    "title": "skill title",
-    "item": ["html", "js", "abacadabra"]
-  },
-  {
-    "title": "skill title",
-    "item": ["html", "js", "abacadabra"]
+    "title": "Version Control",
+    "item": ["Git"]
   }
 ]
