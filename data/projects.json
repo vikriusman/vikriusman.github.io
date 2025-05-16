@@ -1,0 +1,56 @@
+[
+  {
+    "icon": "/images/lcm_telin.png",
+    "title": "LCM – Telin Singapore",
+    "sub_title": "Full Cycle",
+    "description": "Set up development, staging, and production environments. Built and optimized business logic using SQL and ORM technologies. Supported deployment and maintenance activities to ensure system reliability. Successfully standardized environment setup, reducing operational errors by 20%."
+  },
+  {
+    "icon": "/images/digierp.png",
+    "title": "DigiERP – Telkom Indonesia",
+    "sub_title": "Full Cycle",
+    "description": "Set up and maintained VM-based environments for ERP modules. Deployed and managed native applications across finance, supply chain, and HR sectors. Supported UAT environments and production rollouts. Achieved high system stability across environments with proactive maintenance practices."
+  },
+  {
+    "icon": "/images/sonde.png",
+    "title": "Sonde DSO Super Apps – Telkom Indonesia",
+    "sub_title": "Full Cycle",
+    "description": "Designed and deployed backend microservices for various platform features. Supported containerization strategies to ensure application scalability. Assisted in implementing continuous deployment workflows. Improved deployment frequency and system scalability."
+  },
+  {
+    "icon": "/images/asset_maluku.jpg",
+    "title": "Asset Management – Bank Maluku Malut",
+    "sub_title": "Full Cycle",
+    "description": "Developed backend systems for asset and vendor modules. Integrated with the S400 core banking system for financial operations. Implemented continuous monitoring and maintenance strategies. Ensured smooth integration with core banking systems with zero critical errors during audits."
+  },
+  {
+    "icon": "/images/birawa.png",
+    "title": "MyBirawa Series – Graha Sarana Duta",
+    "sub_title": "Full Cycle",
+    "description": "Delivered applications with complete CI/CD pipelines, tracking, and KPI features. Supported backend development and optimized reporting functionalities. Coordinated deployment and post-launch optimization. Reduced incident reports by 25% through robust monitoring and deployment practices."
+  },
+  {
+    "icon": "/images/proj-Taspen.jpg",
+    "title": "ITMS Series – PT Taspen",
+    "sub_title": "Full Cycle",
+    "description": "Customized and enhanced modules based on direct user feedback. Supported continuous integration and deployment for faster updates. Conducted post-deployment system optimizations. Achieved 70% resource efficiency improvement during frontend build processes."
+  },
+  {
+    "icon": "/images/proj-Airnav.jpg",
+    "title": "ITMS – PT LPPNPI (AirNav Indonesia)",
+    "sub_title": "Full Cycle",
+    "description": "Implemented and maintained CI/CD pipelines to accelerate application release cycles. Collaborated with developers and HR stakeholders to align technical updates with organizational needs. Provisioned and managed VM- and container-based environments for staging and production. Conducted system monitoring and post-deployment troubleshooting. Improved new module deployment speed by 60% through environment automation and configuration streamlining."
+  },
+  {
+    "icon": "/images/proj-NED.jpg",
+    "title": "NED (New Edapem) – PT Taspen",
+    "sub_title": "Full Cycle",
+    "description": "Built and maintained core infrastructure using microservices principles. Migrated data from HANA DB on-premises to HANA DB on GCP. Optimized secure integrations with financial services. Supported environment management using Proxmox and CI/CD pipelines. Improved transaction reliability and reduced downtime in payment processing systems."
+  },
+  {
+    "icon": "/images/sidex.jpg",
+    "title": "LMS – PT Sigma Cipta Caraka (Telkomsigma)",
+    "sub_title": "Full Cycle",
+    "description": "Deployed and maintained containerized LMS environments for development, testing, and production. Automated database and application backup routines to ensure system reliability and recoverability. Integrated CI/CD workflows to streamline updates of plugins and core LMS features. Monitored system health and usage metrics to optimize performance and user experience. Successfully optimized to run on low-spec environments by reducing memory footprint and tuning services, enabling broader deployment across internal infrastructure."
+  }
+]

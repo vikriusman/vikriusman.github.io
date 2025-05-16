@@ -65,7 +65,7 @@
                 class="w-80 p-2 border-2 border-zinc-400 flex gap-3 items-center mt-2"
               >
                 <div class="w-5 h-5 bg-violet-400"></div>
-                currently working on<span class="font-bold">JKT48</span>
+                Working at <span class="font-bold">TelkomSigma</span>
               </div>
             </div>
           </div>
@@ -168,13 +168,13 @@
         >
           <div
             class="border-2 border-zinc-400 divide-y-1 divide-gray-200"
-            v-for="(project, key) in projects"
+            v-for="(project, key) in certs"
             :key="key + 'pr'"
           >
             <img :src="project.icon" class="aspect-3/2 object-cover" />
 
             <div class="text-l text-violet-400 font-medium font-medium p-3">
-              {{ project.title }}
+              <a :href="project.verification" target="_blank">{{ project.sub_title }} : {{ project.title }}</a>
             </div>
           </div>
         </div>
@@ -186,11 +186,11 @@
     >
       <div class="grid grid-cols-2 gap-4 items-center">
         <div class="col-span-2 md:col-span-1">
-          <div>Oniel, Lily adn Azizi</div>
-          <div>working on JKT48</div>
+          <div>Currently accepting freelance projects and open to job opportunities</div>
+          <div>as DevOps Engineer</div>
         </div>
         <div class="col-span-2 md:col-span-1 justify-items-end">
-          <div class="font-bold mb-2">Socials Media</div>
+          <div class="font-bold mb-2">Contact Me :</div>
           <div class="flex gap-3 flex-wrap">
             <a
               v-for="(data, key) in socials"
@@ -208,7 +208,7 @@
       </div>
 
       <div class="text-center mt-10 dark:text-gray-400 text-gray-600">
-        &copy; Copyright {{ year }}. Made by Kintan Umari
+        &copy; Copyright {{ year }}. Made by <a class="text-violet-400" href="https://kintanr.github.io" target="_blank">Kintan Umari </a>
       </div>
     </div>
   </div>
@@ -227,6 +227,8 @@ import gmail_dark from "~/assets/images/gmail-dark.png";
 import skill from "~/assets/images/skills.png";
 
 import skills from "~/data/skills.json";
+import projects from "~/data/projects.json";
+import certs from "~/data/certification.json";
 
 const year = new Date().getFullYear();
 
@@ -234,52 +236,21 @@ const socials = [
   {
     icon: github,
     dark_icon: github_dark,
-    link: "https://www.instagram.com/zeeasadel/",
+    link: "https://github.com/vikriusman",
   },
   {
     icon: linkedin,
     dark_icon: linkedin_dark,
-    link: "https://www.instagram.com/jkt48.oniel/",
+    link: "https://www.linkedin.com/in/vikri-usman-rizky",
   },
   {
     icon: gmail,
     dark_icon: gmail_dark,
-    link: "vikriusman02@gmail.com",
+    link: "vikriusman2@gmail.com",
   },
 ];
 
 const email = "vikriusman02@gmail.com";
-
-const projects = [
-  {
-    icon: banner,
-    title: "Project Title",
-    sub_title: "Maintenance",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, seddo eiusmod tempor i",
-  },
-  {
-    icon: banner,
-    title: "Project Title",
-    sub_title: "Web Development",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco",
-  },
-  {
-    icon: banner,
-    title: "Project Title",
-    sub_title: "Web Development",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco",
-  },
-  {
-    icon: banner,
-    title: "Project Title",
-    sub_title: "Web Development",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco",
-  },
-];
 
 useHead({
   titleTemplate: "Vikri Usman Rizky",
