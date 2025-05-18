@@ -10,5 +10,17 @@
     "title": "FUNDAMENTAL CYBER SECURITY",
     "sub_title": "Coding Studio",
     "verification": "https://member.codingstudio.id/certificate/lTjRIDQpfC"
+  },
+  {
+    "icon": ["/images/coursera_XN99BQZNG74F.jpg"],
+    "title": "IT Support Google",
+    "sub_title": "Coursera",
+    "verification": "https://coursera.org/verify/professional-cert/XN99BQZNG74F"
+  },
+    {
+    "icon": ["/images/coursera_ORPZS129RYG3.jpg"],
+    "title": "Application Secu rity for Developers and DevOps Professionals",
+    "sub_title": "Coursera",
+    "verification": "https://coursera.org/verify/ORPZS129RYG3"
   }
 ]
