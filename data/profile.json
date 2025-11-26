@@ -1,0 +1,27 @@
+{
+    "name": "Vikri Usman Rizky",
+    "title": "DevOps Engineer",
+    "summary_title_prefix": "Specializing in",
+    "summary_title": "Cloud Infrastructure, CI/CD Automation, and System Reliability.",
+    "summary": "DevOps Engineer with over 5 years of experience delivering full-cycle software development for 17+ projects in the telecommunications, finance, and public sectors. Proficient in CI/CD, microservices architecture, cloud-native development, and cross-functional collaboration. Specialized in automating deployments, optimizing databases, and ensuring high availability in production environments.",
+    "socials": [
+        {
+            "name": "GitHub",
+            "link": "https://github.com/vikriusman",
+            "icon_light": "/images/github.png",
+            "icon_dark": "/images/github-dark.png"
+        },
+        {
+            "name": "LinkedIn",
+            "link": "https://www.linkedin.com/in/vikri-usman-rizky",
+            "icon_light": "/images/linkedin.png",
+            "icon_dark": "/images/linkedin-dark.png"
+        },
+        {
+            "name": "Gmail",
+            "link": "vikriusman2@gmail.com",
+            "icon_light": "/images/gmail.png",
+            "icon_dark": "/images/gmail-dark.png"
+        }
+    ]
+}
