@@ -1,0 +1,299 @@
+# 🧭 **Kurikulum Final Kubernetes Infrastructure & Operations**
+
+## **📘 Modul 0 — Pengantar dan Fondasi**
+
+### **0.1. Mengapa Kubernetes?**
+
+Bahasan ini mencakup:
+
+* Evolusi deployment aplikasi (VM → container → orchestration)
+* Kebutuhan modern: scalability, high availability, observability, automation
+* Kelemahan sistem deployment manual
+* Alasan Kubernetes menjadi de facto standard di industri
+
+### **0.2. Use Case yang Cocok untuk Kubernetes**
+
+Contoh aplikasi/workload yang ideal:
+
+* Microservices skala menengah–besar
+* Sistem yang membutuhkan autoscaling dinamis
+* Aplikasi dengan lifecycle cepat (CI/CD heavy)
+* Multi-tenant platform
+* Event-driven workloads
+* Machine learning pipelines
+* Edge computing (melalui K3s/microk8s)
+
+### **0.3. Kapan TIDAK Menggunakan Kubernetes**
+
+Pembahasan kritikal yang sering diabaikan:
+
+* Workload sederhana (1–3 service)
+* Tim kecil tanpa DevOps/SRE yang kuat
+* Budget kecil atau *resource* hardware terbatas
+* Aplikasi monolitik dengan sedikit perubahan
+* Kebutuhan *real-time processing* super ketat (latency-sensitive)
+* Lingkungan offline/air-gapped tanpa tenaga ahli
+* Workload stateful berat tanpa kebutuhan horizontal scaling
+
+### **0.4. Konsep Dasar Container & Orchestration**
+
+* Apa itu container
+* Apa itu image
+* Container runtime vs container engine
+* Orchestration & reconciliation loop
+* Control plane vs data plane
+
+---
+
+# 🧱 **Modul 1 — Infrastruktur Dasar untuk Kubernetes**
+
+### **1.1. Persiapan Infrastruktur**
+
+* Syarat minimum node
+* OS yang kompatibel
+* Kernel modules
+* Cgroups dan control group drivers
+* Network prerequisites
+* Firewall, port, IP forwarding
+* Planning jumlah node dan topologi jaringan
+
+### **1.2. Instalasi Container Runtime**
+
+* Containerd
+* CRI-O
+* Perbandingan keduanya
+* Konfigurasi sandbox image
+* Optimasi runtime
+
+---
+
+# 🏗 **Modul 2 — Instalasi dan Manajemen Cluster dengan kubeadm**
+
+### **2.1. Konsep kubeadm**
+
+* Tujuan kubeadm
+* Kapan sebaiknya menggunakan kubeadm vs managed Kubernetes
+* Arsitektur bootstrap cluster
+
+### **2.2. Membuat Cluster dengan kubeadm**
+
+* Generate config
+* `kubeadm init`
+* Join control plane
+* Join worker node
+
+### **2.3. Mengelola Siklus Hidup Cluster**
+
+* Upgrade control plane
+* Upgrade worker nodes
+* Backup & restore: ETCD snapshot
+* Node maintenance (cordon, drain, uncordon)
+
+### **2.4. Implementasi Highly Available Control Plane**
+
+* External load balancer
+* Stacked vs external etcd
+* HA topology best practices
+
+---
+
+# 🔌 **Modul 3 — Ekosistem dan Ekstensi Kubernetes (CNI, CSI, CRI, CRD)**
+
+### **3.1. Container Network Interface (CNI)**
+
+* Arsitektur CNI
+* Perbandingan: Calico, Cilium, Flannel, Weave
+* Kapan pilih mana
+
+### **3.2. Container Storage Interface (CSI)**
+
+* Konsep
+* Provisioner vs attacher
+* Compatible CSI used in cloud and on-prem
+
+### **3.3. Container Runtime Interface (CRI)**
+
+* CRI API
+* Containerd vs CRI-O
+
+### **3.4. Custom Resource Definitions (CRD)**
+
+* Apa itu CRD
+* Bagaimana controller bekerja
+* Event reconciliation
+* Contoh CRD sederhana
+
+### **3.5. Operators**
+
+* Operator pattern
+* Instalasi operator
+* Contoh: Prometheus Operator, Cert-Manager
+
+---
+
+# 🩺 **Modul 4 — Troubleshooting Kubernetes Cluster**
+
+### **4.1. Troubleshooting Node**
+
+* Failed node
+* Disk pressure / memory pressure
+* Kubelet issues
+* Container runtime issues
+
+### **4.2. Troubleshooting Cluster Components**
+
+* ETCD
+* API server
+* Scheduler
+* Controller manager
+
+### **4.3. Logs & Output Streams**
+
+* Arah output container (stdout/stderr)
+* Log rotation
+* Containerd shim logs
+
+---
+
+# 📊 **Modul 5 — Monitoring Cluster dan Aplikasi**
+
+### **5.1. Metrik dan Telemetri**
+
+* Metrics-server
+* Prometheus
+* Node exporter
+* Kube-state-metrics
+
+### **5.2. Monitoring Resource Usage**
+
+* CPU, memory, network
+* Pod-level, container-level, node-level
+
+---
+
+# 🚀 **Modul 6 — Deployment dan Konfigurasi Aplikasi**
+
+### **6.1. Application Deployment**
+
+* Deployment, ReplicaSet, Pod
+* Rolling updates
+* Rollbacks
+
+### **6.2. ConfigMaps & Secrets**
+
+* Environment variables
+* Volume mounts
+* Best practices (secrets encryption, KMS)
+
+### **6.3. Autoscaling**
+
+* HPA
+* VPA
+* Cluster autoscaler (bonus advanced section)
+
+### **6.4. Primitives untuk Self-Healing**
+
+* Liveness probe
+* Readiness probe
+* Startup probe
+* Resource limits/requests
+
+---
+
+# 🎯 **Modul 7 — Pod Admission & Scheduling**
+
+### **7.1. Node Affinity / Anti-affinity**
+
+### **7.2. Taints & Tolerations**
+
+### **7.3. Resource Quotas & LimitRange**
+
+### **7.4. Pod Security Standards (PSS)**
+
+### **7.5. Admission controller**
+
+---
+
+# 🌐 **Modul 8 — Kubernetes Networking & Services**
+
+### **8.1. Observasi Konektivitas Pod**
+
+* Pod-to-Pod networking
+* Pod-to-Service networking
+* Cross-node communication
+
+### **8.2. Network Policies**
+
+* Ingress rules
+* Egress rules
+* Default deny
+
+### **8.3. Jenis-jenis Service**
+
+* ClusterIP
+* NodePort
+* LoadBalancer
+* Headless services
+
+### **8.4. Ingress & L7 Routing**
+
+* Ingress controller
+* Ingress resource
+* Gateway API (modern recommended approach)
+
+### **8.5. CoreDNS**
+
+* Resolusi DNS antar Pod
+* Debug DNS issues
+
+---
+
+# 💾 **Modul 9 — Kubernetes Storage**
+
+### **9.1. StorageClass**
+
+* Provisioner
+* Reclaim policy
+* Parameters
+
+### **9.2. Dynamic Volume Provisioning**
+
+### **9.3. Jenis Volume & Access Mode**
+
+* ReadWriteOnce
+* ReadWriteMany
+* ReadOnlyMany
+
+### **9.4. PersistentVolumes & PersistentVolumeClaims**
+
+* Static vs dynamic
+* Binding lifecycle
+* Delete/retain/recycle
+
+---
+
+# 🧩 **Modul 10 — Helm & Kustomize**
+
+### **10.1. Menggunakan Helm**
+
+* Chart structure
+* Repo management
+* Installing/upgrading cluster components
+
+### **10.2. Menggunakan Kustomize**
+
+* Patches
+* Overlays
+* Production vs staging
+
+---
+
+# 📘 **Modul 11 — Case Studies & Best Practices (Ops-Ready)**
+
+(opsional tapi sangat bagus untuk website edukasi)
+
+* Cluster on-prem (HAProxy + kubeadm + containerd)
+* Cluster di cloud (GKE/EKS/AKS)
+* Multi-cluster setup
+* Observability stack deployment
+* GitOps patterns
