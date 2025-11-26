@@ -8,7 +8,8 @@
       <div class="flex flex-wrap gap-4 text-sm">
         <!-- <a :href="'mailto:' + profile.email" class="hover:underline">{{ profile.email }}</a> -->
         <span v-for="(social, index) in profile.socials" :key="index">
-          <a :href="social.link" target="_blank" class="hover:underline">{{ social.link }}</a>
+          <a v-if="social.link.includes('@')" :href="'mailto:' + social.link" class="hover:underline">{{ social.link }}</a>
+          <a v-else :href="social.link" target="_blank" class="hover:underline">{{ social.link }}</a>
         </span>
       </div>
     </header>
