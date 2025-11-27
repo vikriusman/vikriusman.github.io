@@ -1,9 +1,9 @@
 ---
-title: Modul 7 - Pod Admission & Scheduling
+title: Modul 7 - Pod Admission dan Scheduling
 date: 2025-11-26
 ---  
 
-## 7.1. Node Affinity & Anti-Affinity
+## 7.1. Node Affinity dan Anti-Affinity
 
 Node affinity mengatur preferensi atau persyaratan Pod agar dijadwalkan pada node tertentu berdasarkan label. Mekanisme ini bekerja sebagai filter dan prioritas dalam scheduler.
 
@@ -49,7 +49,7 @@ affinity:
 ```
 
 ---
-## 7.2. Pod Affinity & Anti-Affinity
+## 7.2. Pod Affinity dan Anti-Affinity
 
 Pod affinity adalah aturan penjadwalan yang mempertimbangkan lokasi Pod lain. Digunakan untuk:
 
@@ -88,7 +88,7 @@ affinity:
 
 ---
 
-## 7.3. Taints & Tolerations
+## 7.3. Taints dan Tolerations
 
 Taints dan tolerations memungkinkan node menolak Pod tertentu kecuali Pod tersebut memiliki toleration yang sesuai.
 
@@ -144,7 +144,7 @@ tolerations:
 
 ---
 
-## 7.4. Resource Quotas & LimitRange
+## 7.4. Resource Quotas dan LimitRange
 
 Kubernetes menyediakan mekanisme pembatasan resource pada level namespace untuk fairness dan mencegah konsumsi berlebihan.
 

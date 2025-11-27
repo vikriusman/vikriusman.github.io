@@ -9,18 +9,34 @@
     </header>
 
     <div class="grid gap-8">
-      <div v-if="!groupedArticles || Object.keys(groupedArticles).length === 0" class="text-center text-gray-500">
+      <div v-if="!hasArticles" class="text-center text-gray-500">
         No posts found.
       </div>
       
-      <div v-else v-for="(group, groupName) in groupedArticles" :key="groupName">
-        <h2 class="text-2xl font-bold mb-4 capitalize border-b-2 border-gray-800 pb-2">{{ groupName }}</h2>
-        <div class="grid gap-4">
-          <div v-for="article in group" :key="article.path" class="border-l-4 border-gray-200 pl-4 hover:border-blue-500 transition-colors">
-            <NuxtLink :to="article.path" class="group block">
-              <h3 class="text-lg font-bold group-hover:text-blue-600">{{ article.title || 'Untitled' }}</h3>
-              <p class="text-sm text-gray-600 line-clamp-2">{{ article.description }}</p>
-            </NuxtLink>
+      <div v-else v-for="(languages, topic) in groupedArticles" :key="topic" class="border-b border-gray-200 pb-4">
+        <button 
+          @click="toggleTopic(topic)" 
+          class="w-full flex justify-between items-center text-left py-2 hover:bg-gray-50 transition-colors focus:outline-none"
+        >
+          <h2 class="text-2xl font-bold capitalize">{{ topic }}</h2>
+          <span class="text-xl transform transition-transform duration-200" :class="{ 'rotate-180': expandedTopics.has(topic) }">
+            ▼
+          </span>
+        </button>
+
+        <div v-if="expandedTopics.has(topic)" class="mt-4 space-y-6 pl-4 border-l-2 border-gray-100">
+          <div v-for="(articles, lang) in languages" :key="lang">
+            <h3 class="text-lg font-semibold mb-3 text-gray-700 flex items-center gap-2">
+              <span class="uppercase text-xs font-bold px-2 py-1 bg-gray-100 rounded">{{ lang === 'id' ? 'Indonesia' : (lang === 'en' ? 'English' : lang) }}</span>
+            </h3>
+            <div class="grid gap-3">
+              <div v-for="article in articles" :key="article.path" class="group">
+                <NuxtLink :to="article.path" class="block hover:bg-gray-50 p-2 rounded transition-colors -ml-2">
+                  <h4 class="text-md font-bold group-hover:text-blue-600">{{ article.title || 'Untitled' }}</h4>
+                  <p class="text-sm text-gray-500 line-clamp-1">{{ article.description }}</p>
+                </NuxtLink>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -31,29 +47,68 @@
 <script setup>
 const { data: articles } = await useAsyncData('blog', () => queryCollection('content').all())
 
+const expandedTopics = ref(new Set())
+
+const toggleTopic = (topic) => {
+  if (expandedTopics.value.has(topic)) {
+    expandedTopics.value.delete(topic)
+  } else {
+    expandedTopics.value.add(topic)
+  }
+}
+
 const groupedArticles = computed(() => {
   if (!articles.value) return {}
   
   const groups = {}
+  
   articles.value.forEach(article => {
-    // Extract folder name from path: /blog/kubernetes/modul-0 -> kubernetes
-    const parts = article.path.split('/')
-    // parts[0] is empty, parts[1] is 'blog', parts[2] is the folder
-    const folder = parts.length > 3 ? parts[2] : 'General'
+    // Expected path: /blog/<topic>/<lang>/<slug>
+    // Example: /blog/kubernetes/id/modul-0
+    const parts = article.path.split('/').filter(Boolean)
     
-    if (!groups[folder]) {
-      groups[folder] = []
+    // parts[0] = 'blog'
+    // parts[1] = topic (e.g., 'kubernetes')
+    // parts[2] = lang (e.g., 'id', 'en') or filename if legacy
+    
+    if (parts.length < 2) return // Skip invalid paths
+    
+    const topic = parts[1]
+    let lang = 'General'
+    
+    if (parts.length >= 3) {
+      // Check if parts[2] is a known language code or folder
+      if (['id', 'en'].includes(parts[2])) {
+        lang = parts[2]
+      } else {
+        // Fallback for files directly in topic folder or other structure
+        // If the file is like /blog/kubernetes/modul-0.md, parts[2] is 'modul-0'
+        // We can treat it as 'General' or try to infer
+        lang = 'General' 
+      }
     }
-    groups[folder].push(article)
+
+    if (!groups[topic]) {
+      groups[topic] = {}
+    }
+    if (!groups[topic][lang]) {
+      groups[topic][lang] = []
+    }
+    
+    groups[topic][lang].push(article)
   })
   
-  // Sort articles within groups if needed
-  for (const folder in groups) {
-    groups[folder].sort((a, b) => (a.title || '').localeCompare(b.title || ''))
+  // Sort articles within languages
+  for (const topic in groups) {
+    for (const lang in groups[topic]) {
+      groups[topic][lang].sort((a, b) => (a.title || '').localeCompare(b.title || ''))
+    }
   }
   
   return groups
 })
+
+const hasArticles = computed(() => Object.keys(groupedArticles.value).length > 0)
 
 useHead({
   title: 'Blog - Vikri Usman Rizky'
