@@ -1,23 +1,25 @@
 <template>
   <div>
-    <div class="md:p-25 p-10">
-      <div class="fixed top-0 md:left-4 left-2">
-        <div
-          class="flex flex-col items-center gap-3 text-gray-500 dark:text-gray-400 h-80"
-        >
-          <div class="flex-1 w-[2px] bg-gray-300 dark:bg-gray-700"></div>
+    <div class="fixed top-0 md:left-4 left-2 z-50">
+      <div
+        class="flex flex-col items-center gap-3 text-gray-500 dark:text-gray-400 h-80"
+      >
+        <div class="flex-1 w-[2px] bg-gray-300 dark:bg-gray-700"></div>
 
-          <a
-            v-for="(data, key) in socials"
-            :key="key"
-            :href="containsHttps(data.link) ? data.link : 'mailto:' + data.link"
-            target="_blank"
-          >
-            <img :src="data.icon" width="20" class="hidden dark:block" />
-            <img :src="data.dark_icon" width="20" class="block dark:hidden" />
-          </a>
-        </div>
+        <a
+          v-for="(data, key) in socials"
+          :key="key"
+          :href="containsHttps(data.link) ? data.link : 'mailto:' + data.link"
+          target="_blank"
+        >
+          <img :src="data.icon" width="20" class="hidden dark:block" />
+          <img :src="data.dark_icon" width="20" class="block dark:hidden" />
+        </a>
+        <ExportPdfButton />
       </div>
+    </div>
+    <div class="md:p-25 p-10">
+
       <div class="grid grid-cols-2 gap-4 justify-items-center items-center">
         <div class="col-span-2 md:col-span-1 md:mb-0 mb-7">
           <div class="text-4xl md:text-4xl font-bold mb-3">
@@ -343,6 +345,21 @@ const socials = [
 ];
 
 const email = profile.email;
+
+definePageMeta({
+  alias: '/export'
+});
+
+const route = useRoute();
+const { exportToPdf } = usePdfExport();
+
+onMounted(async () => {
+  console.log('Current route path:', route.path);
+  if (route.path === '/export' || route.path === '/export/') {
+    console.log('Triggering export...');
+    await exportToPdf();
+  }
+});
 
 useHead({
   titleTemplate: profile.name,
