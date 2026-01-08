@@ -17,6 +17,8 @@
     "@nuxt/ui": "^3.1.1",
     "better-sqlite3": "^12.4.6",
     "eslint": "^9.26.0",
+    "html2canvas-pro": "^1.6.4",
+    "jspdf": "^4.0.0",
     "mermaid": "^11.12.1",
     "nuxt": "^4.2.1",
     "typescript": "^5.8.3",
