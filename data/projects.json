@@ -3,9 +3,9 @@
     "icon": [
       "/images/Gemini_Generated_AI.png"
     ],
-    "title": "AI Services — Private Company",
+    "title": "AI Services – Undisclosed Company",
     "sub_title": "Full Cycle",
-    "description": "Established standardized deployment workflows for AI services, reducing configuration drift across dev, staging, and production. Optimized hybrid infrastructure using NVIDIA MIG strategies on GKE and on-premises clusters to support scalable RAG workloads. Configured Qdrant and Meilisearch setups while partnering with engineers to translate experimental models into production-ready systems."
+    "description": "Established standardized deployment workflows for AI services, reducing configuration drift across dev, staging, and production. Optimized hybrid infrastructure using NVIDIA MIG strategies on GKE and on-premises clusters to support scalable RAG workloads. Configured Langfuse, Qdrant and Meilisearch setups while partnering with engineers to translate experimental models into production-ready systems."
   },
   {
     "icon": [
