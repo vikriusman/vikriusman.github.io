@@ -1,7 +1,12 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import yaml from '@rollup/plugin-yaml';
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+
+  vite: {
+    plugins: [yaml()]
+  },
 
   nitro: {
     preset: 'static',
@@ -17,7 +22,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/content'
   ],
-  css: [ '~/assets/css/styles.css'],
+  css: ['~/assets/css/styles.css'],
   ui: {
     theme: {
       colors: [
@@ -32,7 +37,7 @@ export default defineNuxtConfig({
     families: {
       MyFont: {
         sources: [
-          
+
           { src: '/fonts/NaturalMono-Regular.ttf', type: 'font/ttf' },
           { src: '/fonts/CONSOLA.TTF', type: 'font/ttf' }
         ],
