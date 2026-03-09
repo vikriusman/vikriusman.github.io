@@ -1,0 +1,27 @@
+- title: DevOps Tools
+  item:
+    - GitLab,
+    - Jenkins,
+    - Harbor,
+    - Kubernetes,
+    - Cloud Build,
+    - Github Action
+- title: Programming
+  item:
+    - Python,
+    - Shell Script
+- title: Databases
+  item:
+    - PostgreSQL,
+    - MySQL,
+    - Redis,
+    - MongoDB,
+    - HanaDB
+- title: Version Control
+  item:
+    - Git
+- title: Cloud Provider
+  item:
+    - GCP,
+    - Azure
+

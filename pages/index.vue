@@ -301,10 +301,10 @@ import gmail from "~/assets/images/gmail.png";
 import gmail_dark from "~/assets/images/gmail-dark.png";
 import skill from "~/assets/images/skills.png";
 
-import skills from "~/data/skills.json";
-import projects from "~/data/projects.json";
-import certs from "~/data/certification.json";
-import profile from "~/data/profile.json";
+import skills from "~/data/skills.yml";
+import projects from "~/data/projects.yml";
+import certs from "~/data/certification.yml";
+import profile from "~/data/profile.yml";
 
 const year = new Date().getFullYear();
 

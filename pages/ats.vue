@@ -62,10 +62,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import profile from "~/data/profile.json";
-import skills from "~/data/skills.json";
-import projectsData from "~/data/projects.json";
-import certs from "~/data/certification.json";
+import profile from "~/data/profile.yml";
+import skills from "~/data/skills.yml";
+import projectsData from "~/data/projects.yml";
+import certs from "~/data/certification.yml";
 
 const projects = ref(projectsData);
 
