@@ -57,6 +57,13 @@
         </li>
       </ul>
     </section>
+
+    <!-- Disclaimer -->
+    <footer class="mt-8 pt-4 border-t border-gray-300">
+      <p class="text-xs italic text-gray-500 text-justify leading-relaxed">
+        Infrastructure estimates are approximate and assumption-based in the absence of product incubation. Exact requirements depend on finalized product scope, tech stack, and user targets.
+      </p>
+    </footer>
   </div>
 </template>
 
