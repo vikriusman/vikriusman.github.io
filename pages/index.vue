@@ -259,15 +259,12 @@
         class="justify-center mt-10 dark:text-gray-400 text-gray-600 flex gap-1 flex-wrap"
       >
         <span>&copy; Copyright {{ year }}.</span>
-        <span
-          >Made by
-          <a
-            class="text-violet-400"
-            href="https://kintanr.github.io"
-            target="_blank"
-            >Kintan Umari
-          </a></span
-        >
+      </div>
+
+      <div
+        class="justify-center mt-2 text-center dark:text-gray-500 text-gray-500 text-xs italic px-4"
+      >
+        Infrastructure estimates are approximate and assumption-based in the absence of product incubation. Exact requirements depend on finalized product scope, tech stack, and user targets.
       </div>
 
       <UModal v-model:open="open" class="!max-w-[900px] overflow-y-auto">
