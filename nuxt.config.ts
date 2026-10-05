@@ -36,8 +36,7 @@ gtag('config', 'G-TSV3VPZHT9');`
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/icon',
-    '@nuxt/ui',
-    '@nuxt/content'
+    '@nuxt/ui'
   ],
   css: ['~/assets/css/styles.css'],
   ui: {
