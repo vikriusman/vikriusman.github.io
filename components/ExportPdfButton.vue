@@ -4,7 +4,7 @@
       <UButton
         icon="i-heroicons-printer"
         size="sm"
-        color="gray"
+        color="neutral"
         variant="ghost"
         aria-label="Export to PDF"
         @click="exportToPdf"

@@ -1,7 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;500;700&display=swap");
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-
-html, body {
-  font-family: 'CONSOLA', monospace;
+@theme {
+  --font-display: "Instrument Serif", "Times New Roman", serif;
+  --font-body: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "CONSOLA", ui-monospace, monospace;
 }
+
+/* Light = "paper", dark = "console" */
+:root {
+  --bg: #f1ece1;
+  --bg-raised: #e8e1d2;
+  --ink: #17150f;
+  --ink-dim: #5d5849;
+  --line: #17150f26;
+  --signal: #c2410c;
+  --signal-ink: #fff7ed;
+  --ok: #3f7d20;
+}
+
+.dark {
+  --bg: #0d0e0c;
+  --bg-raised: #151713;
+  --ink: #ece8dc;
+  --ink-dim: #8b8878;
+  --line: #ece8dc1f;
+  --signal: #ffb000;
+  --signal-ink: #0d0e0c;
+  --ok: #7ddc4a;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: -1px -1px;
+}
+
+/* film grain */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--signal);
+  color: var(--signal-ink);
+}
+
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.rule { border-color: var(--line); }
+
+/* pulsing status dot */
+.pulse {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 9999px;
+  background: var(--ok);
+  box-shadow: 0 0 0 0 var(--ok);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  70% { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* staggered load-in */
+.rise {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+@keyframes rise {
+  to { opacity: 1; transform: none; }
+}
+
+/* scrolling ticker */
+.ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 40s linear infinite;
+}
+@keyframes ticker {
+  to { transform: translateX(-50%); }
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--line);
+  transition: all 0.15s;
+}
+.chip:hover {
+  background: var(--signal);
+  color: var(--signal-ink);
+  border-color: var(--signal);
+}
+
+/* deployment rows */
+.row {
+  border-top: 1px solid var(--line);
+  transition: background 0.2s;
+}
+.row:last-child { border-bottom: 1px solid var(--line); }
+.row:hover { background: var(--bg-raised); }
+.row:hover .row-arrow { transform: translate(4px, -4px); color: var(--signal); }
+.row-arrow { transition: all 0.2s; }
+
+.thumb {
+  filter: grayscale(1) contrast(1.05);
+  transition: filter 0.3s;
+}
+.row:hover .thumb,
+.cert:hover .thumb { filter: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise, .ticker, .pulse { animation: none; opacity: 1; transform: none; }
+}
+
+.cursor { color: var(--signal); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
