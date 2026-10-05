@@ -142,7 +142,14 @@
               <div class="font-display text-2xl md:text-3xl leading-tight">{{ project.title }}</div>
               <div class="label mt-1">{{ project.sub_title }}</div>
             </div>
-            <p class="hidden md:block text-sm text-[var(--ink-dim)] line-clamp-3">{{ project.description }}</p>
+            <div class="hidden md:block">
+              <div class="flex flex-wrap gap-1.5">
+                <span v-for="t in project.stack" :key="t" class="chip">{{ t }}</span>
+              </div>
+              <p v-if="project.impact" class="mt-3 text-sm text-[var(--ink-dim)]">
+                <span class="text-[var(--signal)] font-mono">↳</span> {{ project.impact }}
+              </p>
+            </div>
             <UIcon name="i-heroicons-arrow-up-right" class="row-arrow text-2xl" />
           </button>
         </div>
@@ -228,7 +235,17 @@
         >
           <img :src="item" class="w-full max-h-[50vh] object-contain" />
         </UCarousel>
-        <p class="leading-relaxed">{{ active?.description }}</p>
+        <div class="flex flex-wrap gap-1.5 mb-5">
+          <span v-for="t in active?.stack" :key="t" class="chip">{{ t }}</span>
+        </div>
+        <ul class="space-y-2 leading-relaxed">
+          <li v-for="item in active?.scope" :key="item" class="flex gap-3">
+            <span class="text-[var(--signal)] font-mono">▸</span><span>{{ item }}</span>
+          </li>
+        </ul>
+        <p v-if="active?.impact" class="mt-5 pt-4 border-t rule font-mono text-sm">
+          <span class="text-[var(--signal)]">impact:</span> {{ active.impact }}
+        </p>
       </template>
     </UModal>
   </div>
