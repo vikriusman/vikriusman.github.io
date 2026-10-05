@@ -1,302 +1,241 @@
 <template>
-  <div>
-    <div class="fixed top-0 md:left-4 left-2 z-50">
-      <div
-        class="flex flex-col items-center gap-3 text-gray-500 dark:text-gray-400 h-80"
-      >
-        <div class="flex-1 w-[2px] bg-gray-300 dark:bg-gray-700"></div>
-
-        <a
-          v-for="(data, key) in socials"
-          :key="key"
-          :href="containsHttps(data.link) ? data.link : 'mailto:' + data.link"
-          target="_blank"
-        >
-          <img :src="data.icon" width="20" class="hidden dark:block" />
-          <img :src="data.dark_icon" width="20" class="block dark:hidden" />
-        </a>
-        <ExportPdfButton />
-      </div>
-    </div>
-    <div class="md:p-25 p-10">
-
-      <div class="grid grid-cols-2 gap-4 justify-items-center items-center">
-        <div class="col-span-2 md:col-span-1 md:mb-0 mb-7">
-          <div class="text-4xl md:text-4xl font-bold mb-3">
-            {{ profile.name }} | <span class="text-violet-400">{{ profile.title }}</span>
-          </div>
-          <div class="text-2xl md:text-3xl font-bold">
-            {{ profile.summary_title_prefix }}
-            <span class="text-violet-400"
-              >{{ profile.summary_title }}</span
-            >
-          </div>
-
-          <div class="my-9">
-            {{ profile.summary }}
-          </div>
-        </div>
-        <div class="col-span-2 md:col-span-1 w-full">
-          <div class="relative w-full">
-            <img
-              :src="shape"
-              width="200"
-              class="z-1 absolute top-1/5 md:left-1/6 left-0"
-            />
-            <img
-              :src="shape"
-              width="150"
-              class="z-3 absolute bottom-1/11 md:right-1/5 right-0 rotate-90"
-            />
-
-            <div class="flex items-center flex-col">
-              <img
-                :src="mylofly"
-                class="aspect-2/3 object-cover relative z-2"
-                width="300"
-              />
-              <div
-                class="w-80 p-2 border-2 border-zinc-400 flex gap-3 items-center mt-2"
-              >
-                <div class="w-5 h-5 bg-violet-400"></div>
-                Working on <span class="font-bold">Large-scale system</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <section class="mt-25">
-        <div class="flex items-center md:w-120 w-full">
-          <UIcon
-            name="i-mingcute-dot-grid-line"
-            class="text-2xl text-violet-400"
-          />
-
-          <span class="text-2xl font-bold ml-1 mr-3">Skills</span>
-          <hr class="flex-1 border-violet-400" />
-        </div>
-
-        <div class="mt-5 grid grid-cols-3 gap-5 mt-5 justify-items-center">
-          <div class="col-span-3 md:col-span-2 w-full">
-            <div class="grid grid-cols-4 gap-5">
-              <div
-                class="border-2 col-span-4 md:col-span-1 border-zinc-400 divide-y-1 divide-gray-200"
-                v-for="(data, key) in skills"
-                :key="key + 'skill'"
-              >
-                <div class="mb-3 text-xl text-violet-400 font-medium p-3">
-                  {{ data.title }}
-                </div>
-                <div class="p-3 flex flex-wrap gap-3">
-                  <span v-for="(item, i) in data.item" :key="i + 'item'">{{
-                    item
-                  }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-span-3 md:col-span-1 justify-items-center content-center hidden md:block"
-          >
-            <div
-              class="border-2 border-zinc-400 w-80 max-h-40 flex justify-center"
-            >
-              <div class="dark:bg-zinc-900 bg-white -mt-40 p-6">
-                <img :src="skill" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="mt-25">
-        <div class="flex items-center md:w-100 w-full">
-          <UIcon
-            name="i-mingcute-dot-grid-line"
-            class="text-2xl text-violet-400"
-          />
-
-          <span class="text-2xl font-bold ml-1 mr-3">Projects</span>
-          <hr class="flex-1 border-violet-400" />
-        </div>
-
-        <div
-          class="mt-5 grid grid-cols-1 md:grid-cols-4 gap-5 mt-5 justify-between"
-        >
-          <div
-            class="border-2 border-zinc-400 divide-y-1 divide-gray-200"
-            v-for="(project, key) in projects"
-            :key="key + 'pr'"
-          >
-            <div class="relative aspect-3/2 overflow-hidden">
-              <UCarousel
-                v-slot="{ item }"
-                :dots="project.icon.length > 1 ? true : false"
-                :ui="{
-                  controls: 'absolute bottom-1 inset-x-12',
-                  dots: 'bottom-2 ',
-                  dot: 'w-6 h-1  shadow-2xl',
-                }"
-                :items="project.icon"
-                class="justify-center w-full h-full"
-              >
-                <div class="w-full h-full aspect-3/2 flex justify-center">
-                  <img
-                    :src="item"
-                    @click="previewImage(item)"
-                    class="object-cover"
-                  />
-                </div>
-              </UCarousel>
-            </div>
-
-            <div
-              class="text-l text-gray-600 dark:text-gray-400 font-medium p-3"
-            >
-              {{ project.sub_title }}
-            </div>
-            <div class="p-3 justify-between">
-              <div class="mb-3 text-xl text-violet-400 font-medium">
-                {{ project.title }}
-              </div>
-              <div>
-                {{ project.description.slice(0, 200) }}...
-                <div
-                  class="font-bold text-violet-400 cursor-pointer mt-2"
-                  @click="openDescription(project)"
-                >
-                  Read more
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="mt-25">
-        <div class="flex items-center md:w-140 w-full">
-          <UIcon
-            name="i-mingcute-dot-grid-line"
-            class="text-2xl text-violet-400"
-          />
-
-          <span class="text-2xl font-bold ml-1 mr-3">Certification</span>
-          <hr class="flex-1 border-violet-400" />
-        </div>
-
-        <div
-          class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-5 mt-5 justify-between"
-        >
-          <div
-            class="border-2 border-zinc-400 divide-y-1 divide-gray-200"
-            v-for="(project, key) in certs"
-            :key="key + 'pr'"
-          >
-            <div class="relative aspect-3/2 overflow-hidden">
-              <UCarousel
-                v-slot="{ item }"
-                :dots="project.icon.length > 1 ? true : false"
-                :ui="{
-                  controls: 'absolute bottom-1 inset-x-12',
-                  dots: 'bottom-2 ',
-                  dot: 'w-6 h-1  shadow-2xl',
-                }"
-                :items="project.icon"
-                class="flex justify-center w-full h-full"
-              >
-                <div class="w-full h-full aspect-3/2 object-cover">
-                  <img
-                    :src="item"
-                    @click="previewImage(item)"
-                    class="object-cover"
-                  />
-                </div>
-              </UCarousel>
-            </div>
-
-            <div class="text-l text-violet-400 font-medium font-medium p-3">
-              <a :href="project.verification" target="_blank"
-                >{{ project.sub_title }} : {{ project.title }}</a
-              >
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <div
-      class="border-t-2 border-zinc-300 bg-zinc-200 dark:bg-zinc-800 md:px-25 md:py-5 py-5 px-10 md:justify-between justify-center h-full"
+  <div class="relative">
+    <!-- top bar -->
+    <header
+      class="sticky top-0 z-40 backdrop-blur-md border-b rule"
+      style="background: color-mix(in srgb, var(--bg) 82%, transparent)"
     >
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-        <div
-          class="justify-items-center text-center md:justify-items-start md:text-start"
-        >
-          <div>
-            Currently accepting freelance projects and open to job opportunities
-          </div>
-          <div>as {{ profile.title }}</div>
+      <div class="mx-auto max-w-6xl px-5 h-12 flex items-center justify-between">
+        <div class="flex items-center gap-3 label !text-[var(--ink)]">
+          <span class="pulse"></span>
+          vikriusman<span class="text-[var(--signal)]">@</span>prod
+          <span class="hidden sm:inline text-[var(--ink-dim)]">· all systems operational</span>
         </div>
-        <div class="md:justify-items-end justify-items-center">
-          <div class="font-bold mb-2">Contact Me :</div>
-          <div class="flex gap-3 flex-wrap">
+        <nav class="flex items-center gap-1 sm:gap-4 label">
+          <a href="#skills" class="hidden sm:inline hover:text-[var(--signal)]">Stack</a>
+          <a href="#projects" class="hidden sm:inline hover:text-[var(--signal)]">Deployments</a>
+          <a href="#certs" class="hidden sm:inline hover:text-[var(--signal)]">Certs</a>
+          <ExportPdfButton />
+          <UButton
+            :icon="isDark ? 'i-heroicons-sun' : 'i-heroicons-moon'"
+            size="sm"
+            color="neutral"
+            variant="ghost"
+            aria-label="Toggle theme"
+            @click="colorMode.preference = isDark ? 'light' : 'dark'"
+          />
+        </nav>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-5">
+      <!-- HERO -->
+      <section class="grid md:grid-cols-[1.25fr_1fr] gap-12 lg:gap-16 pt-14 md:pt-24 pb-20 items-center">
+        <div>
+          <p class="label rise" style="--i: 0">// {{ profile.title }}</p>
+          <h1
+            class="font-display text-[clamp(3.4rem,8vw,7rem)] leading-[0.9] tracking-tight mt-4 rise"
+            style="--i: 1"
+          >
+            {{ firstName }}<br />
+            <em class="text-[var(--signal)]">{{ restName }}</em>
+          </h1>
+          <p class="mt-8 text-xl md:text-2xl max-w-xl leading-snug rise" style="--i: 2">
+            {{ profile.summary_title_prefix }}
+            <span class="underline decoration-[var(--signal)] decoration-2 underline-offset-4">{{ profile.summary_title }}</span>
+          </p>
+          <p class="mt-5 max-w-xl text-[var(--ink-dim)] leading-relaxed rise" style="--i: 3">
+            {{ profile.summary }}
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center gap-3 rise" style="--i: 4">
             <a
-              v-for="(data, key) in socials"
-              :key="key"
-              :href="
-                containsHttps(data.link) ? data.link : 'mailto:' + data.link
-              "
-              target="_blank"
+              :href="mailHref"
+              class="font-mono text-sm px-4 py-2.5 bg-[var(--signal)] text-[var(--signal-ink)] font-bold hover:translate-x-0.5 hover:-translate-y-0.5 transition"
             >
-              <img :src="data.icon" width="25" class="hidden dark:block" />
-              <img :src="data.dark_icon" width="25" class="block dark:hidden" />
+              say hello →
+            </a>
+            <a
+              v-for="s in socials.slice(0, 2)"
+              :key="s.name"
+              :href="s.href"
+              target="_blank"
+              class="font-mono text-sm px-4 py-2.5 border rule hover:border-[var(--signal)] hover:text-[var(--signal)] transition flex items-center gap-2"
+            >
+              <UIcon :name="s.icon" /> {{ s.name }}
             </a>
           </div>
         </div>
-      </div>
 
-      <div
-        class="justify-center mt-10 dark:text-gray-400 text-gray-600 flex gap-1 flex-wrap"
-      >
-        <span>&copy; Copyright {{ year }}.</span>
-      </div>
-
-      <div
-        class="justify-center mt-2 text-center dark:text-gray-500 text-gray-500 text-xs italic px-4"
-      >
-        Infrastructure estimates are approximate and assumption-based in the absence of product incubation. Exact requirements depend on finalized product scope, tech stack, and user targets.
-      </div>
-
-      <UModal v-model:open="open" class="!max-w-[900px] overflow-y-auto">
-        <template #content>
-          <img :src="imagePrev" class="rounded-lg" />
-        </template>
-      </UModal>
-
-      <UModal v-model:open="open_description" :title="project_title">
-        <template #body>
-          <div>
-            {{ all_description }}
+        <!-- status panel: balances the hero -->
+        <aside class="rise border rule bg-[var(--bg)] shadow-[10px_10px_0_var(--signal)]" style="--i: 3">
+          <div class="flex items-center justify-between border-b rule px-4 py-2.5 label">
+            <span>status.yml</span>
+            <span class="flex items-center gap-2"><span class="pulse"></span> live</span>
           </div>
-        </template>
-      </UModal>
+          <dl class="p-5 md:p-6 font-mono text-sm leading-7">
+            <div v-for="row in statusRows" :key="row.k" class="grid grid-cols-[8rem_1fr] gap-3">
+              <dt class="text-[var(--signal)]">{{ row.k }}:</dt>
+              <dd>{{ row.v }}</dd>
+            </div>
+            <div class="mt-3 text-[var(--ink-dim)]">
+              <span class="text-[var(--signal)]">$</span> kubectl get vikri<span class="cursor">▌</span>
+            </div>
+          </dl>
+        </aside>
+      </section>
+    </main>
+
+    <!-- TICKER -->
+    <div class="overflow-hidden border-b rule py-3 font-mono text-sm text-[var(--ink-dim)]" aria-hidden="true">
+      <div class="ticker">
+        <span v-for="(t, i) in tickerItems" :key="i" class="px-5 whitespace-nowrap">
+          <span class="text-[var(--signal)]">■</span> {{ t }}
+        </span>
+      </div>
     </div>
+
+    <main class="mx-auto max-w-6xl px-5">
+      <!-- SKILLS -->
+      <section id="skills" class="pt-24 scroll-mt-12">
+        <div class="flex items-baseline gap-4 mb-10">
+          <span class="label text-[var(--signal)]">01.</span>
+          <h2 class="font-display text-5xl md:text-6xl">The stack</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-px bg-[var(--line)] border rule">
+          <div
+            v-for="group in skills"
+            :key="group.title"
+            class="bg-[var(--bg)] p-6 hover:bg-[var(--bg-raised)] transition-colors"
+          >
+            <div class="label mb-4">{{ group.title }}</div>
+            <div class="flex flex-wrap gap-2">
+              <span v-for="item in group.item" :key="item" class="chip">{{ clean(item) }}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="pt-24 scroll-mt-12">
+        <div class="flex items-baseline gap-4 mb-10">
+          <span class="label text-[var(--signal)]">02.</span>
+          <h2 class="font-display text-5xl md:text-6xl">Deployments</h2>
+          <span class="label hidden sm:inline">selected work</span>
+        </div>
+
+        <div>
+          <button
+            v-for="(project, i) in projects"
+            :key="project.title"
+            class="row w-full text-left grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[3rem_9rem_1fr_1.4fr_auto] gap-4 md:gap-6 items-center p-4 md:px-4 md:py-5 cursor-pointer"
+            @click="openProject(project)"
+          >
+            <span class="font-mono text-sm text-[var(--ink-dim)]">{{ String(i + 1).padStart(2, '0') }}</span>
+            <img
+              :src="project.icon[0]"
+              :alt="project.title"
+              class="thumb hidden md:block w-36 h-20 object-cover border rule"
+              loading="lazy"
+            />
+            <div>
+              <div class="font-display text-2xl md:text-3xl leading-tight">{{ project.title }}</div>
+              <div class="label mt-1">{{ project.sub_title }}</div>
+            </div>
+            <p class="hidden md:block text-sm text-[var(--ink-dim)] line-clamp-3">{{ project.description }}</p>
+            <UIcon name="i-heroicons-arrow-up-right" class="row-arrow text-2xl" />
+          </button>
+        </div>
+      </section>
+
+      <!-- CERTS -->
+      <section id="certs" class="pt-24 scroll-mt-12">
+        <div class="flex items-baseline gap-4 mb-10">
+          <span class="label text-[var(--signal)]">03.</span>
+          <h2 class="font-display text-5xl md:text-6xl">Certifications</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <a
+            v-for="cert in certs"
+            :key="cert.title"
+            :href="cert.verification"
+            target="_blank"
+            class="cert group border rule bg-[var(--bg)] hover:border-[var(--signal)] transition-colors"
+          >
+            <div class="aspect-[3/2] overflow-hidden border-b rule">
+              <img
+                :src="cert.icon[0]"
+                :alt="cert.title"
+                class="thumb w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-4">
+              <div class="label text-[var(--signal)]">{{ cert.sub_title }}</div>
+              <div class="mt-1 text-sm leading-snug">{{ cert.title }}</div>
+              <div class="label mt-3 group-hover:text-[var(--signal)]">verify ↗</div>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER / CONTACT -->
+    <footer class="mt-28 border-t rule bg-[var(--bg-raised)]">
+      <div class="mx-auto max-w-6xl px-5 py-16">
+        <p class="label">// open to work</p>
+        <a
+          :href="mailHref"
+          class="block font-display text-[clamp(2.5rem,8vw,6.5rem)] leading-none mt-4 hover:text-[var(--signal)] transition-colors break-all"
+        >
+          Let's build something<span class="text-[var(--signal)]">.</span>
+        </a>
+        <p class="mt-6 max-w-lg text-[var(--ink-dim)]">
+          Currently accepting freelance projects and open to job opportunities as {{ profile.title }}.
+        </p>
+
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a
+            v-for="s in socials"
+            :key="s.name"
+            :href="s.href"
+            target="_blank"
+            class="font-mono text-sm px-4 py-2.5 border rule hover:border-[var(--signal)] hover:text-[var(--signal)] transition flex items-center gap-2"
+          >
+            <UIcon :name="s.icon" /> {{ s.name }}
+          </a>
+        </div>
+
+        <div class="mt-14 pt-6 border-t rule flex flex-col md:flex-row gap-3 justify-between label !normal-case !tracking-normal">
+          <span>&copy; {{ year }} {{ profile.name }}</span>
+          <span class="max-w-xl md:text-right italic">
+            Infrastructure estimates are approximate and assumption-based in the absence of product incubation.
+            Exact requirements depend on finalized product scope, tech stack, and user targets.
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <UModal v-model:open="open_project" :title="active?.title" :description="active?.sub_title" :ui="{ content: 'max-w-3xl' }">
+      <template #body>
+        <UCarousel
+          v-if="active"
+          v-slot="{ item }"
+          :items="active.icon"
+          :dots="active.icon.length > 1"
+          arrows
+          class="mb-5"
+        >
+          <img :src="item" class="w-full max-h-[50vh] object-contain" />
+        </UCarousel>
+        <p class="leading-relaxed">{{ active?.description }}</p>
+      </template>
+    </UModal>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-// import mylofly from "~/assets/images/mylofly.png";
-import mylofly from "/images/me.png";
-import banner from "~/assets/images/banner.png";
-import github from "~/assets/images/github.png";
-import github_dark from "~/assets/images/github-dark.png";
-import linkedin from "~/assets/images/linkedin.png";
-import linkedin_dark from "~/assets/images/linkedin-dark.png";
-import shape from "~/assets/images/shape.png";
-import gmail from "~/assets/images/gmail.png";
-import gmail_dark from "~/assets/images/gmail-dark.png";
-import skill from "~/assets/images/skills.png";
 
 import skills from "~/data/skills.yml";
 import projects from "~/data/projects.yml";
@@ -305,43 +244,50 @@ import profile from "~/data/profile.yml";
 
 const year = new Date().getFullYear();
 
-const open = ref(false);
-const imagePrev = ref(null);
+const groupItems = (title: string) =>
+  (skills.find((g: any) => g.title === title)?.item ?? []).map((i: string) => i.replace(/,$/, ""));
 
-function previewImage(image: any) {
-  open.value = true;
-  imagePrev.value = image;
-}
-
-const open_description = ref(false);
-const project_title = ref(null);
-const all_description = ref(null);
-
-function openDescription(data: any) {
-  open_description.value = true;
-  project_title.value = data.title;
-  all_description.value = data.description;
-}
-
-const socials = [
-  {
-    icon: github,
-    dark_icon: github_dark,
-    link: profile.socials.find(s => s.name === 'GitHub')?.link || "https://github.com/vikriusman",
-  },
-  {
-    icon: linkedin,
-    dark_icon: linkedin_dark,
-    link: profile.socials.find(s => s.name === 'LinkedIn')?.link || "https://www.linkedin.com/in/vikri-usman-rizky",
-  },
-  {
-    icon: gmail,
-    dark_icon: gmail_dark,
-    link: profile.socials.find(s => s.name === 'Gmail')?.link || "vikriusman2@gmail.com",
-  },
+const statusRows = [
+  { k: "role", v: profile.title },
+  { k: "focus", v: "CI/CD · Reliability" },
+  { k: "cloud", v: groupItems("Cloud Provider").join(" · ") },
+  { k: "orchestration", v: "Kubernetes" },
+  { k: "pipelines", v: groupItems("DevOps Tools").filter((t: string) => t !== "Kubernetes").slice(0, 3).join(" · ") },
+  { k: "availability", v: "open to work" },
 ];
 
-const email = profile.email;
+const colorMode = useColorMode();
+const isDark = computed(() => colorMode.value === "dark");
+
+const open_project = ref(false);
+const active = ref<any>(null);
+
+function openProject(project: any) {
+  active.value = project;
+  open_project.value = true;
+}
+
+const [firstName, ...rest] = profile.name.split(" ");
+const restName = rest.join(" ");
+
+const iconFor: Record<string, string> = {
+  Gmail: "i-simple-icons-gmail",
+  LinkedIn: "i-simple-icons-linkedin",
+  GitHub: "i-simple-icons-github",
+};
+
+const socials = profile.socials.map((s: any) => ({
+  name: s.name,
+  icon: iconFor[s.name] ?? "i-heroicons-link",
+  href: containsHttps(s.link) ? s.link : "mailto:" + s.link,
+}));
+const mailHref = socials.find((s: any) => s.name === "Gmail")?.href ?? "#";
+
+const clean = (s: string) => s.replace(/,$/, "");
+const tickerItems = [
+  ...skills.flatMap((g: any) => g.item.map(clean)),
+  ...skills.flatMap((g: any) => g.item.map(clean)),
+];
 
 definePageMeta({
   alias: '/export'

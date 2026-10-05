@@ -12,7 +12,7 @@ export const usePdfExport = () => {
         colorMode.preference = 'dark';
 
         // Wait for the theme change to propagate
-        await new Promise(resolve => setTimeout(resolve, 800));
+        await new Promise(resolve => setTimeout(resolve, 1800));
 
         try {
             console.log('Generating canvas...');
@@ -20,7 +20,7 @@ export const usePdfExport = () => {
                 scale: 2,
                 useCORS: true,
                 allowTaint: true,
-                backgroundColor: '#111827', // dark-900 like
+                backgroundColor: '#0d0e0c',
                 windowWidth: 1600 // Ensure wide layout
             });
 

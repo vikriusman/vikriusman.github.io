@@ -16,7 +16,8 @@
     - MySQL,
     - Redis,
     - MongoDB,
-    - HanaDB
+    - HanaDB,
+    - Qdrant
 - title: Version Control
   item:
     - Git
@@ -24,4 +25,6 @@
   item:
     - GCP,
     - Azure
-
+- title: Coding Assistant
+  item:
+    - Claude Code
