@@ -48,7 +48,12 @@
             {{ profile.summary }}
           </p>
 
-          <div class="mt-8 flex flex-wrap items-center gap-3 rise" style="--i: 4">
+          <p class="mt-6 flex items-center gap-2 font-mono text-sm rise" style="--i: 4">
+            <span class="pulse"></span>
+            Available for freelance DevOps &amp; cloud projects
+          </p>
+
+          <div class="mt-5 flex flex-wrap items-center gap-3 rise" style="--i: 4">
             <a
               :href="mailHref"
               class="font-mono text-sm px-4 py-2.5 bg-[var(--signal)] text-[var(--signal-ink)] font-bold hover:translate-x-0.5 hover:-translate-y-0.5 transition"
@@ -321,9 +326,21 @@ onMounted(async () => {
   }
 });
 
-useHead({
-  titleTemplate: profile.name,
+const siteUrl = "https://vikriusman.github.io";
+const seoTitle = `${profile.name} | Freelance DevOps & Cloud Engineer`;
+const seoDescription =
+  "Freelance DevOps & cloud engineer, open to work. 5+ years in cloud, CI/CD, Kubernetes, and reliability across telecom, AI, and public sector.";
+
+useSeoMeta({
+  title: seoTitle,
+  description: seoDescription,
+  ogTitle: seoTitle,
+  ogDescription: seoDescription,
+  ogUrl: siteUrl + "/",
+  twitterTitle: seoTitle,
+  twitterDescription: seoDescription,
 });
+useHead({ link: [{ rel: "canonical", href: siteUrl + "/" }] });
 
 function containsHttps(text: string | string[]) {
   return text.includes("https");

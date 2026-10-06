@@ -79,8 +79,12 @@ const projects = ref(projectsData);
 useHead({
   title: `${profile.name} - ATS CV`,
   meta: [
-    { name: 'description', content: 'ATS Friendly CV of Vikri Usman Rizky' }
-  ]
+    { name: 'description', content: 'ATS-friendly CV of Vikri Usman Rizky, DevOps & Cloud Engineer: skills, projects, and certifications in plain text.' },
+    { property: 'og:title', content: `${profile.name} - ATS CV` },
+    { property: 'og:description', content: 'ATS-friendly CV of Vikri Usman Rizky, DevOps & Cloud Engineer: skills, projects, and certifications in plain text.' },
+    { property: 'og:url', content: 'https://vikriusman.github.io/ats' }
+  ],
+  link: [{ rel: 'canonical', href: 'https://vikriusman.github.io/ats' }]
 });
 </script>
 
