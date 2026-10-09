@@ -13,7 +13,7 @@
         </div>
         <nav class="flex items-center gap-1 sm:gap-4 label">
           <a href="#skills" class="hidden sm:inline hover:text-[var(--signal)]">Stack</a>
-          <a href="#projects" class="hidden sm:inline hover:text-[var(--signal)]">Deployments</a>
+          <a href="#portfolio" class="hidden sm:inline hover:text-[var(--signal)]">Portfolio</a>
           <a href="#certs" class="hidden sm:inline hover:text-[var(--signal)]">Certs</a>
           <ExportPdfButton />
           <UButton
@@ -121,42 +121,51 @@
         </div>
       </section>
 
-      <!-- PROJECTS -->
-      <section id="projects" class="pt-24 scroll-mt-12">
-        <div class="flex items-baseline gap-4 mb-10">
+      <!-- PORTFOLIO -->
+      <section id="portfolio" class="pt-24 scroll-mt-12">
+        <div class="flex items-baseline gap-4 mb-4">
           <span class="label text-[var(--signal)]">02.</span>
-          <h2 class="font-display text-5xl md:text-6xl">Deployments</h2>
-          <span class="label hidden sm:inline">selected work</span>
+          <h2 class="font-display text-5xl md:text-6xl">Portfolio</h2>
+          <a
+            href="https://github.com/vikriusman/curated"
+            target="_blank"
+            rel="noopener"
+            class="label hidden sm:inline hover:text-[var(--signal)]"
+          >github.com/vikriusman/curated ↗</a>
         </div>
+        <p class="max-w-2xl text-[var(--ink-dim)] leading-relaxed mb-10">
+          Labs are runnable, rebuilt from scratch around dummy apps, with recorded proof.
+          Field notes are anonymized write-ups of real production work that cannot be reproduced publicly.
+        </p>
 
         <div>
-          <button
-            v-for="(project, i) in projects"
-            :key="project.title"
-            class="row w-full text-left grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[3rem_9rem_1fr_1.4fr_auto] gap-4 md:gap-6 items-center p-4 md:px-4 md:py-5 cursor-pointer"
-            @click="openProject(project)"
+          <a
+            v-for="item in portfolio"
+            :key="item.kind + item.code"
+            :href="item.link"
+            target="_blank"
+            rel="noopener"
+            class="row w-full text-left grid grid-cols-[1fr_auto] md:grid-cols-[8rem_1fr_1.2fr_auto] gap-4 md:gap-6 items-start p-4 md:px-4 md:py-6"
           >
-            <span class="font-mono text-sm text-[var(--ink-dim)]">{{ String(i + 1).padStart(2, '0') }}</span>
-            <img
-              :src="project.icon[0]"
-              :alt="project.title"
-              class="thumb hidden md:block w-36 h-20 object-cover border rule"
-              loading="lazy"
-            />
+            <div class="hidden md:block">
+              <div class="label text-[var(--signal)]">{{ item.kind }}</div>
+              <div class="font-mono text-sm text-[var(--ink-dim)] mt-1">{{ item.code }}</div>
+            </div>
             <div>
-              <div class="font-display text-2xl md:text-3xl leading-tight">{{ project.title }}</div>
-              <div class="label mt-1">{{ project.sub_title }}</div>
+              <div class="label text-[var(--signal)] md:hidden mb-1">{{ item.kind }} {{ item.code }}</div>
+              <div class="font-display text-2xl md:text-3xl leading-tight">{{ item.title }}</div>
+              <p class="mt-2 text-sm text-[var(--ink-dim)] leading-relaxed">{{ item.summary }}</p>
             </div>
             <div class="hidden md:block">
               <div class="flex flex-wrap gap-1.5">
-                <span v-for="t in project.stack" :key="t" class="chip">{{ t }}</span>
+                <span v-for="t in item.stack" :key="t" class="chip">{{ t }}</span>
               </div>
-              <p v-if="project.impact" class="mt-3 text-sm text-[var(--ink-dim)]">
-                <span class="text-[var(--signal)] font-mono">↳</span> {{ project.impact }}
+              <p class="mt-3 text-sm text-[var(--ink-dim)]">
+                <span class="text-[var(--signal)] font-mono">↳</span> {{ item.proof }}
               </p>
             </div>
             <UIcon name="i-heroicons-arrow-up-right" class="row-arrow text-2xl" />
-          </button>
+          </a>
         </div>
       </section>
 
@@ -228,39 +237,13 @@
       </div>
     </footer>
 
-    <UModal v-model:open="open_project" :title="active?.title" :description="active?.sub_title" :ui="{ content: 'max-w-3xl' }">
-      <template #body>
-        <UCarousel
-          v-if="active"
-          v-slot="{ item }"
-          :items="active.icon"
-          :dots="active.icon.length > 1"
-          arrows
-          class="mb-5"
-        >
-          <img :src="item" class="w-full max-h-[50vh] object-contain" />
-        </UCarousel>
-        <div class="flex flex-wrap gap-1.5 mb-5">
-          <span v-for="t in active?.stack" :key="t" class="chip">{{ t }}</span>
-        </div>
-        <ul class="space-y-2 leading-relaxed">
-          <li v-for="item in active?.scope" :key="item" class="flex gap-3">
-            <span class="text-[var(--signal)] font-mono">▸</span><span>{{ item }}</span>
-          </li>
-        </ul>
-        <p v-if="active?.impact" class="mt-5 pt-4 border-t rule font-mono text-sm">
-          <span class="text-[var(--signal)]">impact:</span> {{ active.impact }}
-        </p>
-      </template>
-    </UModal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 
 import skills from "~/data/skills.yml";
-import projects from "~/data/projects.yml";
+import portfolio from "~/data/portfolio.yml";
 import certs from "~/data/certification.yml";
 import profile from "~/data/profile.yml";
 
@@ -280,14 +263,6 @@ const statusRows = [
 
 const colorMode = useColorMode();
 const isDark = computed(() => colorMode.value === "dark");
-
-const open_project = ref(false);
-const active = ref<any>(null);
-
-function openProject(project: any) {
-  active.value = project;
-  open_project.value = true;
-}
 
 const [firstName, ...rest] = profile.name.split(" ");
 const restName = rest.join(" ");

@@ -1,0 +1,43 @@
+# Portfolio entries from https://github.com/vikriusman/curated
+# kind: "Lab" = runnable, rebuilt from scratch around a dummy app
+#       "Field note" = anonymized write-up of real production work
+- kind: Lab
+  code: "01"
+  title: Stateless Monolith on Kubernetes
+  summary: >-
+    A stateful PHP monolith scaled horizontally without a rewrite: sessions moved to
+    Redis, uploads to S3-compatible storage mounted through the Mountpoint CSI driver.
+  stack: [Kubernetes, CodeIgniter 3, Redis, Mountpoint S3 CSI, RustFS, Terraform, EC2]
+  proof: Sessions and files stayed consistent across pods on two separate EC2 machines.
+  link: https://github.com/vikriusman/curated/tree/main/01-stateless-monolith
+
+- kind: Lab
+  code: "02"
+  title: Canary Releases Gated by Readiness and Log Analysis
+  summary: >-
+    A 12-factor Go service released by weight at Envoy Gateway, with Argo Rollouts
+    asking Loki for the canary's error rate before every step.
+  stack: [Go, Envoy Gateway, Argo Rollouts, Loki, Alloy, Postgres, k3s]
+  proof: A release that passed every probe was stopped by its own logs at 5% of traffic.
+  link: https://github.com/vikriusman/curated/tree/main/02-progressive-delivery
+
+- kind: Field note
+  code: "01"
+  title: Highly Available On-Prem Kubernetes Across Three Regions
+  summary: >-
+    A nationwide government platform on three regional data centers: rack-level
+    failure domains, external etcd, keepalived and MetalLB behind NAT, k3s to RKE2
+    without downtime.
+  stack: [RKE2, Rancher, etcd, keepalived, MetalLB, ingress-nginx]
+  proof: Power-cut drill before handover. A rack lost without downtime; a whole room lost, and only its region went down.
+  link: https://github.com/vikriusman/curated/tree/main/field-notes/01-ha-kubernetes-three-regions
+
+- kind: Field note
+  code: "02"
+  title: An Internal Social Network That Outgrew Its Estimate
+  summary: >-
+    A postmortem: infrastructure sized for two years became unusable in two months.
+    What the estimate missed, how it was fixed, and why the contract was not renewed.
+  stack: [Capacity planning, PostgreSQL, Elasticsearch, Object storage]
+  proof: The story behind "no estimate without incubation".
+  link: https://github.com/vikriusman/curated/tree/main/field-notes/02-social-network-outgrew-estimate
