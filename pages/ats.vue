@@ -38,7 +38,7 @@
       <h3 class="text-lg font-bold uppercase border-b border-black mb-3">Portfolio</h3>
       <p class="text-sm mb-3">
         github.com/vikriusman/curated. Labs are runnable and rebuilt from scratch with recorded proof;
-        field notes are anonymized write-ups of real production work.
+        field notes are anonymized write-ups of real production work; playbooks are how I set things up by default.
       </p>
       <div v-for="(item, index) in portfolio" :key="index" class="mb-4">
         <div class="flex justify-between items-baseline mb-1">

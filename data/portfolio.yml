@@ -41,3 +41,14 @@
   stack: [Capacity planning, PostgreSQL, Elasticsearch, Object storage]
   proof: The story behind "no estimate without incubation".
   link: https://github.com/vikriusman/curated/tree/main/field-notes/02-social-network-outgrew-estimate
+
+- kind: Playbook
+  code: "01"
+  title: Protected Branches, Merge-Request Gates and Shared Pipeline Components
+  summary: >-
+    The minimum I apply to every project on GitLab CI/CD, extended per project: protected
+    branches that only take merge requests, gates before the merge, and versioned components
+    from a central catalog that build and deploy every service the same way.
+  stack: [GitLab CI/CD, Trivy, CI/CD catalog components, Kubernetes]
+  proof: A vulnerable dependency is caught while it is still one line in one merge request.
+  link: https://github.com/vikriusman/curated/tree/main/playbooks/01-protected-branch-pipeline

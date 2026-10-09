@@ -136,6 +136,7 @@
         <p class="max-w-2xl text-[var(--ink-dim)] leading-relaxed mb-10">
           Labs are runnable, rebuilt from scratch around dummy apps, with recorded proof.
           Field notes are anonymized write-ups of real production work that cannot be reproduced publicly.
+          Playbooks are how I set things up by default.
         </p>
 
         <div>
